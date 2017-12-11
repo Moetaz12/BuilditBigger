@@ -1,18 +1,16 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.MyClass;
-import com.example.mylibrary.JokeActivity;
+import com.example.JokeClass;
 
 public class MainActivity extends AppCompatActivity {
 
-    MyClass myClass;
+    JokeClass jokeClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +39,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        myClass = new MyClass();
-        Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra("joke_pass", myClass.getJoke());
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        /*Joker joker = new Joker();
+        // Create Intent to launch JokeFactory Activity
+        Intent intent = new Intent(this, DisplayJokeActivity.class);
+        // Put the string in the envelope
+        intent.putExtra(getString(R.string.jokeEnvelope), joker.tellJoke());
+        startActivity(intent);*/
+
+        //new EndpointAsyncTask().execute(this);
     }
 
 }

@@ -16,8 +16,8 @@
       <configuration>
         <option name="HTTP_ADDRESS" value="localhost" />
         <option name="HTTP_PORT" value="8080" />
-        <option name="WAR_DIR" value="C:\Users\Moetaz\Desktop\BuilditBigger\backend\build\exploded-app" />
-        <option name="WEB_APP_DIR" value="C:\Users\Moetaz\Desktop\BuilditBigger\backend\src\main\webapp" />
+        <option name="WAR_DIR" value="F:\Git\BuilditBigger\backend\build\exploded-app" />
+        <option name="WEB_APP_DIR" value="F:\Git\BuilditBigger\backend\src\main\webapp" />
         <option name="APPENGINE_SDKROOT" value="C:\Users\Moetaz\.gradle\appengine-sdk\appengine-java-sdk-1.9.18" />
       </configuration>
     </facet>
@@ -40,6 +40,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="javajokes" exported="" />
     <orderEntry type="library" exported="" name="appengine-endpoints-1.9.18" level="project" />
     <orderEntry type="library" exported="" name="appengine-endpoints-deps-1.9.18" level="project" />
     <orderEntry type="library" exported="" name="servlet-api-2.5" level="project" />
