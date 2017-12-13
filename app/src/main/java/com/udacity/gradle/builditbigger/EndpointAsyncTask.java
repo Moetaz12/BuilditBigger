@@ -2,7 +2,7 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
+import android.util.Pair;
 
 import com.example.moetaz.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -14,37 +14,26 @@ import java.io.IOException;
  * Created by Moetaz on 12/4/2017.
  */
 
-class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
+public class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static MyApi myApiService = null;
-    private MainActivityFragment mainActivityFragment;
-    private Context context;
+    private Callback mCallback;
 
+    public EndpointAsyncTask(Callback mCallback) {
+        this.mCallback = mCallback;
+    }
+
+    @SafeVarargs
     @Override
-    protected String doInBackground(MainActivityFragment... params) {
-
-        mainActivityFragment = params[0];
-        context = mainActivityFragment.getActivity();
+    protected final String doInBackground(Pair<Context, String>... params) {
 
 
-        if(myApiService == null) {  // Only do this once
+        if(myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    // options for running against local devappserver
-                    // - 10.0.2.2 is localhost's IP address in Android emulator
-                    // - turn off compression when running against local devappserver
-                    .setRootUrl("https://joketellingapp-1257.appspot.com/_ah/api/");
-                    /*.setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-                        @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-                            abstractGoogleClientRequest.setDisableGZipContent(true);
-                        }
-                    });*/
-            // end options for devappserver
+                    .setRootUrl("https://jokebackend-188912.appspot.com/_ah/api/");
 
             myApiService = builder.build();
         }
-
-
 
 
         try {
@@ -56,16 +45,10 @@ class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        /*// Create Intent to launch JokeFactory Activity
-        Intent intent = new Intent(context, DisplayJokeActivity.class);
-        // Put the string in the envelope
-        intent.putExtra(DisplayJokeActivity.JOKE_KEY,result);
-        context.startActivity(intent);
-        */
+        mCallback.LoadJoke(result);
 
-        //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        mainActivityFragment.loadedJoke = result;
-        mainActivityFragment.launchDisplayJokeActivity();
-
+    }
+    interface Callback{
+        void LoadJoke(String s);
     }
 }

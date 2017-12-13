@@ -4,13 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.example.JokeClass;
 
 public class MainActivity extends AppCompatActivity {
-
-    JokeClass jokeClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -38,15 +32,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-        /*Joker joker = new Joker();
-        // Create Intent to launch JokeFactory Activity
-        Intent intent = new Intent(this, DisplayJokeActivity.class);
-        // Put the string in the envelope
-        intent.putExtra(getString(R.string.jokeEnvelope), joker.tellJoke());
-        startActivity(intent);*/
-
-        //new EndpointAsyncTask().execute(this);
-    }
 
 }
