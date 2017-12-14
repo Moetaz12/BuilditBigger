@@ -17,10 +17,10 @@ import com.google.android.gms.ads.AdView;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
-    public boolean Check = false;
+public class MainActivityFragment extends Fragment implements EndpointAsyncTask.Callback {
+    public String jokeContent = null;
 
-    public String JokeContent = null;
+    public boolean inTestMode = false;
     public MainActivityFragment() {
     }
 
@@ -47,17 +47,20 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
     public void getJoke(){
-        new EndpointAsyncTask().execute(this);
+        new EndpointAsyncTask(this).execute();
     }
 
-    public void GotoJokeActivity(){
-        if (!Check) {
+
+
+    @Override
+    public void LoadJoke(String s) {
+        jokeContent = s;
+
+        if (!inTestMode) {
             Context context = getActivity();
             Intent intent = new Intent(context, JokeActivity.class);
-            intent.putExtra("joke_pass", JokeContent);
+            intent.putExtra("joke_pass", s);
             context.startActivity(intent);
-
         }
     }
-
 }

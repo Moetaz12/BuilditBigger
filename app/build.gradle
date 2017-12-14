@@ -1,17 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    productFlavors {
-        free {
-            applicationId "com.udacity.gradle.builditbigger.free"
-            versionName "1.0­free"
-        }
 
-        paid {
-            applicationId "com.udacity.gradle.builditbigger.paid"
-            versionName "1.0­paid"
-        }
-    }
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
 
@@ -34,38 +24,53 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
-}
-allprojects {
-    repositories {
-        jcenter()
-        maven {
-            url "https://maven.google.com"
+    allprojects {
+        repositories {
+            jcenter()
+            maven {
+                url "https://maven.google.com"
+            }
+        }
+        productFlavors {
+            free {
+                applicationId "com.udacity.gradle.builditbigger.free"
+                versionName "1.0­free"
+            }
+
+            paid {
+                applicationId "com.udacity.gradle.builditbigger.paid"
+                versionName "1.0­paid"
+            }
         }
     }
+
+
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2') {
+
+            exclude group: 'com.android.support', module: 'support-annotations'
+        }
+        androidTestCompile('com.android.support.test:runner:0.3') {
+
+            exclude group: 'com.android.support', module: 'support-annotations'
+        }
+        compile project(':javajokes')
+        compile project(":mylibrary")
+
+        compile project(path: ':backend', configuration: 'android-endpoints')
+        compile group: 'com.google.api-client', name: 'google-api-client', version: '1.22.0'
+        compile group: 'com.google.api-client', name: 'google-api-client-android', version: '1.22.0'
+
+
+        compile 'com.android.support:appcompat-v7:25.0.0'
+        freeCompile 'com.google.android.gms:play-services-ads:11.0.4'
+        compile 'com.google.code.findbugs:jsr305:2.0.1'
+        compile 'com.android.support:support-v4:26.+'
+        androidTestCompile 'junit:junit:4.12'
+    }
+
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2') {
-
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test:runner:0.3') {
-
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    compile project(':javajokes')
-    compile project(":mylibrary")
-
-    compile project(path: ':backend', configuration: 'android-endpoints')
-    compile group: 'com.google.api-client', name: 'google-api-client', version: '1.22.0'
-    compile group: 'com.google.api-client', name: 'google-api-client-android', version: '1.22.0'
-
-
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.google.android.gms:play-services-ads:9.8.0'
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
-    compile 'com.android.support:support-v4:26.+'
-    androidTestCompile 'junit:junit:4.12'
-}

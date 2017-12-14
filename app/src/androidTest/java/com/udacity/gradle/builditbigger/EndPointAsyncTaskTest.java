@@ -17,8 +17,9 @@ public class EndPointAsyncTaskTest {
     @Test
     public void testDoInBackground() throws Exception {
         MainActivityFragment fragment = new  MainActivityFragment();
+        fragment.inTestMode = true;
         new EndpointAsyncTask(fragment).execute();
         Thread.sleep(10000);
-        assertTrue( fragment.JokeContent != null);
+        assertTrue( fragment.jokeContent != null);
     }
 }

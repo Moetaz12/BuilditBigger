@@ -6,7 +6,7 @@
 
 package com.example.Moetaz.myapplication.backend;
 
-import com.example.joker;
+import com.example.Joker;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -38,10 +38,10 @@ public class MyEndpoint {
     }
     */
     @ApiMethod(name = "tellJoke")
-    public MyBean getJoke(){
+    public MyBean tellJoke(){
         MyBean response = new MyBean();
-        joker joker = new joker();
-        response.setData(joker.tellJoke());
+        Joker Joker = new Joker();
+        response.setData(Joker.tellJoke());
         return response;
     }
 

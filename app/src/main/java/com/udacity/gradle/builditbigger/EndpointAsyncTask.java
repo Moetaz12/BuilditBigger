@@ -30,7 +30,7 @@ public class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, St
         if(myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://jokebackend-188912.appspot.com/_ah/api/");
+                    .setRootUrl("https://joketellingapp-1257.appspot.com/_ah/api/");
 
             myApiService = builder.build();
         }

@@ -17,7 +17,8 @@ import com.example.mylibrary.JokeActivity;
 
 public class MainActivityFragment extends Fragment implements EndpointAsyncTask.Callback{
 
-    public String JokeContent = null;
+    public String jokeContent = null;
+    public boolean inTestMode = false;
     public MainActivityFragment() {
     }
 
@@ -30,25 +31,27 @@ public class MainActivityFragment extends Fragment implements EndpointAsyncTask.
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                get_Joke();
+                getJoke();
             }
         });
 
       return root;
     }
-    public void get_Joke(){
+    public void getJoke(){
         new EndpointAsyncTask(this).execute();
     }
 
 
     @Override
     public void LoadJoke(String s) {
+        jokeContent = s;
 
-            JokeContent = s;
+        if (!inTestMode) {
             Context context = getActivity();
             Intent intent = new Intent(context, JokeActivity.class);
             intent.putExtra("joke_pass", s);
             context.startActivity(intent);
+        }
 
 
     }

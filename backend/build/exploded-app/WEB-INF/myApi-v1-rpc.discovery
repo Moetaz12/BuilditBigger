@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"RnkXbyw9us4_w3H-FU6An0C4oYs/DmgXiBcsgAfKjNwQDrFNxapoDEE\"",
+ "etag": "\"RnkXbyw9us4_w3H-FU6An0C4oYs/BVh-ZUSB2i4zhOdyokaVgJvlirE\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -84,7 +84,6 @@
  "methods": {
   "myApi.tellJoke": {
    "id": "myApi.tellJoke",
-   "allowGet": true,
    "returns": {
     "$ref": "MyBean"
    },
